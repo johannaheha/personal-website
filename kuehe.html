@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laufende Kühe im Wettrennen 🐄🏁</title>
+  <style>
+    body {
+      background-color: #88cc88; /* grüne Wiese */
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .cow {
+      position: absolute;
+      top: 50%;
+      font-size: 50px;
+      animation: moveCow linear infinite paused; /* Animation startet nur, wenn Button gedrückt wird */
+      transform: scaleX(-1); /* Kuh wird so gedreht, dass sie nach rechts schaut */
+    }
+
+    /* Erste Kuh läuft langsam */
+    .cow:nth-of-type(1) {
+      animation-duration: 10s;
+    }
+
+    /* Mittlere Kuh springt */
+    .cow:nth-of-type(2) {
+      animation-duration: 8s;
+      animation-name: moveCow, jumpOverObstacle;
+    }
+
+    /* Letzte Kuh läuft schnell */
+    .cow:nth-of-type(3) {
+      animation-duration: 6s;
+    }
+
+    /* Bewegungsanimation für die Kühe */
+    @keyframes moveCow {
+      0% { left: -100px; }
+      100% { left: 100%; }
+    }
+
+    /* Sprunganimation für die mittlere Kuh (Kuh 2) */
+    @keyframes jumpOverObstacle {
+      0% { top: 50%; }
+      25% { top: 35%; } /* Kuh springt hoch */
+      50% { top: 50%; } /* Kuh landet */
+      75% { top: 35%; } /* Kuh springt erneut */
+      100% { top: 50%; } /* Kuh landet wieder */
+    }
+
+    /* Hindernis (Block) */
+    .obstacle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 50px;
+      height: 50px;
+      background-color: #444;
+      border-radius: 5px;
+      transform: translateX(-50%) translateY(-50%);
+    }
+
+    button {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #ffcc00;
+      border: none;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+    
+    <!-- Mehrere Kühe starten das Wettrennen -->
+    <div class="cow" style="top: 30%;">🐄</div>
+  <div class="cow" style="top: 50%;">🐄</div>
+  <div class="cow" style="top: 70%;">🐄</div>
+  
+    <!-- Hindernis -->
+    <div class="obstacle"></div>
+
+  <!-- Button, um das Wettrennen zu starten -->
+  <button id="startButton">Starte das Wettrennen!</button>
+
+  <script>
+    // Funktion, die das Wettrennen startet
+    document.getElementById("startButton").addEventListener("click", function() {
+      // Starte die Animationen (damit die Kühe laufen)
+      document.querySelectorAll('.cow').forEach(function(cow) {
+        cow.style.animationPlayState = 'running'; // Animation starten
+      });
+    });
+  </script>
+
+</body>
+</html>
