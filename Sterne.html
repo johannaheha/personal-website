@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Sterne zählen</title>
+</head>
+<body>
+  <script>
+    let input = prompt("Wie viele Sterne sind am Himmel?");
+    let number = Number(input);
+    let stars = "";
+
+    for (let i = 0; i < number; i++) {
+      stars += "⭐️";
+    }
+
+    document.write(stars);
+  </script>
+</body>
+</html>
